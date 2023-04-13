@@ -13,8 +13,8 @@ addButton.addEventListener("click", function(event) {
         p.innerText = inputField.value;        
         li.append(p);
 
-        const buttonsDiv = document.createElement("div");
-        buttonsDiv.classList.add("buttonsDiv");
+        const liButtonDiv = document.createElement("div");
+        liButtonDiv.classList.add("liButtonDiv");
 
         //add a "remove" button to the li element
         const removeButton = document.createElement("button");
@@ -22,19 +22,35 @@ addButton.addEventListener("click", function(event) {
         removeButton.addEventListener("click", function(event) {
             taskList.removeChild(li);
         })
-        buttonsDiv.append(removeButton);
+        liButtonDiv.append(removeButton);
 
         //add a "done" button to the li element
         const doneButton = document.createElement("button");
         doneButton.innerText = "Done";
         doneButton.addEventListener("click", function(event) {
             p.style.textDecoration = "line-through";
+            li.classList.add("done");
         })
-        buttonsDiv.append(doneButton);
+        liButtonDiv.append(doneButton);
 
-        li.append(buttonsDiv);
+        li.append(liButtonDiv);
 
         taskList.append(li);
         inputField.value = "";
     }
 });
+
+const showDoneButton = document.querySelector(".showDone,.showAll");
+showDoneButton.addEventListener("click", function(event) {
+    const listItems = document.querySelectorAll("li");
+    listItems.forEach(function(item) {
+        if (item.classList.contains("done")) {
+            item.classList.toggle("hide");
+        }
+    })
+    if (showDoneButton.innerText === "Show Done") {
+        showDoneButton.innerText = "Show All";
+    } else {
+        showDoneButton.innerText = "Show Done";
+    }
+})
