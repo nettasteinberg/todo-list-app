@@ -10,7 +10,12 @@ addButton.addEventListener("click", function(event) {
         
         //add the text inside a p element
         const p = document.createElement("p");
-        p.innerText = inputField.value;        
+        p.innerText = inputField.value;
+        p.classList.add("darkMode");
+        p.classList.add("changeFontColor");
+        if (taskList.classList.contains("darkModeAffected")) {
+            p.classList.add("darkModeAffected", "whiteLetters");
+        }
         li.append(p);
 
         const liButtonDiv = document.createElement("div");
@@ -22,6 +27,7 @@ addButton.addEventListener("click", function(event) {
         removeButton.addEventListener("click", function(event) {
             taskList.removeChild(li);
         })
+        removeButton.classList.add("darkMode");
         liButtonDiv.append(removeButton);
 
         //add a "done" button to the li element
@@ -31,6 +37,7 @@ addButton.addEventListener("click", function(event) {
             p.style.textDecoration = "line-through";
             li.classList.add("done");
         })
+        doneButton.classList.add("darkMode");
         liButtonDiv.append(doneButton);
 
         li.append(liButtonDiv);
@@ -67,7 +74,30 @@ showDoneButton.addEventListener("click", function(event) {
     }
 })
 
+const isArraysOverlap = function(array1, array2) {
+    return array1.filter(value => array2.includes(value)).length != 0;
+}
+
 const darkModeButton = document.querySelector(".darkModeButton");
 darkModeButton.addEventListener("click", function(event) {
-    // document.querySelector
+    const darkModeElements = document.querySelectorAll(".darkMode");
+    darkModeElements.forEach(function(element) {
+        const darkLightClasses = [ ...element.classList ];
+        element.classList.toggle("darkModeAffected");
+        if (isArraysOverlap(["lightBlue", "darkBlue"], darkLightClasses)) {
+            element.classList.toggle("darkBlue");
+            element.classList.toggle("lightBlue");
+        }
+        if (isArraysOverlap(["lightYellow", "darkYellow"], darkLightClasses)) {
+            element.classList.toggle("darkYellow");
+            element.classList.toggle("lightYellow");
+        }
+        if (isArraysOverlap(["white", "black"], darkLightClasses)) {
+            element.classList.toggle("black");
+            element.classList.toggle("white");
+        }
+        if (isArraysOverlap(["changeFontColor"], darkLightClasses)) {
+            element.classList.toggle("whiteLetters");
+        }
+    });
 })
