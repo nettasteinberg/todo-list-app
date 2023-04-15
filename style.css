@@ -60,12 +60,18 @@ li {
     justify-content: space-between;
     width: 100%;
     padding: 0.3rem 0.3rem;
+    border-bottom: 1px solid black;
 }
 
 .liButtonDiv {
     display: flex;
     justify-content: space-around;
     width: 30%;
+    padding-right: 0.4rem;
+}
+
+.removeButtonOrDoneButton {
+    border: none;
 }
 
 .lightBlue {

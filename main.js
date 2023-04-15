@@ -3,6 +3,7 @@ const body = document.querySelector("body");
 const addButton = document.querySelector(".addButton");
 const inputField = document.querySelector(".inputField");
 const taskList = document.querySelector(".taskList");
+const showDoneButton = document.querySelector(".showDoneButton,.showAllButton");
 
 addButton.addEventListener("click", function(event) {
     if (inputField.value != "") {
@@ -27,7 +28,7 @@ addButton.addEventListener("click", function(event) {
         removeButton.addEventListener("click", function(event) {
             taskList.removeChild(li);
         })
-        removeButton.classList.add("darkMode");
+        removeButton.classList.add("darkMode", "removeButtonOrDoneButton", "lightYellow");
         liButtonDiv.append(removeButton);
 
         //add a "done" button to the li element
@@ -37,10 +38,14 @@ addButton.addEventListener("click", function(event) {
             p.style.textDecoration = "line-through";
             li.classList.add("done");
         })
-        doneButton.classList.add("darkMode");
+        doneButton.classList.add("darkMode", "removeButtonOrDoneButton", "lightYellow");
         liButtonDiv.append(doneButton);
 
         li.append(liButtonDiv);
+        
+        if (showDoneButton.classList.contains("showOnlyDone")) {
+            li.classList.add("hide");
+        }
 
         taskList.append(li);
         inputField.value = "";
@@ -59,8 +64,9 @@ inputField.addEventListener("keypress", function(event) {
     }
 });
 
-const showDoneButton = document.querySelector(".showDoneButton,.showAllButton");
+
 showDoneButton.addEventListener("click", function(event) {
+    showDoneButton.classList.toggle("showOnlyDone");
     const listItems = document.querySelectorAll("li");
     listItems.forEach(function(item) {
         if (!item.classList.contains("done")) {
