@@ -45,14 +45,14 @@ addButton.addEventListener("click", function(event) {
 inputField.addEventListener("keypress", function(event) {
     // If the user presses the "Enter" key on the keyboard
     if (event.key === "Enter") {
-      // Cancel the default action, if needed
-      event.preventDefault();
-      // Trigger the button element with a click
-      addButton.click();
+        // Cancel the default action, if needed
+        event.preventDefault();
+        // Trigger the button element with a click
+        addButton.click();
     }
-  });
+});
 
-const showDoneButton = document.querySelector(".showDone,.showAll");
+const showDoneButton = document.querySelector(".showDoneButton,.showAllButton");
 showDoneButton.addEventListener("click", function(event) {
     const listItems = document.querySelectorAll("li");
     listItems.forEach(function(item) {
@@ -65,4 +65,9 @@ showDoneButton.addEventListener("click", function(event) {
     } else {
         showDoneButton.innerText = "Show Done";
     }
+})
+
+const darkModeButton = document.querySelector(".darkModeButton");
+darkModeButton.addEventListener("click", function(event) {
+    // document.querySelector
 })
