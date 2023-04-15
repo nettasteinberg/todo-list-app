@@ -37,14 +37,26 @@ addButton.addEventListener("click", function(event) {
 
         taskList.append(li);
         inputField.value = "";
+        inputField.focus();
     }
 });
+
+// pressing enter when the input field is not empty works as clicking the 'Add' button
+inputField.addEventListener("keypress", function(event) {
+    // If the user presses the "Enter" key on the keyboard
+    if (event.key === "Enter") {
+      // Cancel the default action, if needed
+      event.preventDefault();
+      // Trigger the button element with a click
+      addButton.click();
+    }
+  });
 
 const showDoneButton = document.querySelector(".showDone,.showAll");
 showDoneButton.addEventListener("click", function(event) {
     const listItems = document.querySelectorAll("li");
     listItems.forEach(function(item) {
-        if (item.classList.contains("done")) {
+        if (!item.classList.contains("done")) {
             item.classList.toggle("hide");
         }
     })
