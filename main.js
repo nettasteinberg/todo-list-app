@@ -45,6 +45,7 @@ addButton.addEventListener("click", function(event) {
         
         if (showDoneButton.classList.contains("showOnlyDone")) {
             li.classList.add("hide");
+            alert(`Please note: the task '${inputField.value}' was added in 'Show only Done' and will be visible only after you press the 'Show All' button`);
         }
 
         taskList.append(li);
@@ -63,7 +64,6 @@ inputField.addEventListener("keypress", function(event) {
         addButton.click();
     }
 });
-
 
 showDoneButton.addEventListener("click", function(event) {
     showDoneButton.classList.toggle("showOnlyDone");
